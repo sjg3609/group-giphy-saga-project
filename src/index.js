@@ -15,9 +15,9 @@ const searchText = (state = '', action) => {
     return state;
 }
 
-const gifList = (state = [], action) => {
-    if (action.type === 'SET_GIF_SEARCH') {
-        return action.payload;
+const favList = (state = [], action) => {
+    if (action.type === 'SET_GIF_FAVORITE') {
+        return [...state, action.payload];
     }
     return state;
 }
@@ -34,14 +34,14 @@ function* fetchGif() {
 }
 
 function* rootSaga() {
-    yield takeEvery('SET_GIF_SEARCH', fetchGif)
+    
 }
 
 const sagaMiddleware = createSagaMiddleware();
 
 const storeInstance = createStore(
     combineReducers({
-        gifList,
+        favList,
         
     }),
     applyMiddleware(sagaMiddleware, logger),
