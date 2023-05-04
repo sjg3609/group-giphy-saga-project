@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>
+    <div className="gifs">
       <header>
         <h1>Giphy Search!</h1>
       </header>
