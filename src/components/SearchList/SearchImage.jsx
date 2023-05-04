@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { Box, Grid, Card, Paper } from '@mui/material';
+import { Box, Grid, Paper } from '@mui/material';
 import { experimentalStyled as styled } from '@mui/material/styles';
 
 function SearchImage({ gif }) {
@@ -26,7 +26,7 @@ function SearchImage({ gif }) {
 
     return (
         <>
-            <Grid item md={4} >
+            <Grid item md={6} >
                 <Item>
                     <img onClick={toggleFavorite} src={gif.images.fixed_height.url} />
                 </Item>

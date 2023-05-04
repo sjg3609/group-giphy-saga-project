@@ -8,8 +8,8 @@ function SearchList() {
 
     return (
         <div>
-            <Container maxWidth="md" >
-                <Grid container spacing={2} >
+            <Container fixed >
+                <Grid container spacing={1} >
                     {
                         gifList.map((gif, i) => (
                             <SearchImage key={i}
