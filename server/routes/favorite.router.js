@@ -33,7 +33,7 @@ router.put('/:favId', (req, res) => {
   const favoriteGif = req.body
   const categoryId = req.params.id;
   console.log(req.body);
-  const queryText = `UPDATE favorites SET category_id = $1 WHERE id=${req.params.id}`
+  const queryText = `UPDATE favorites SET category_id = $1 WHERE id=${categoryId}`
   const queryValues = favoriteGif.category_id;
   pool.query(queryText, queryValues).then(() => {
     res.sendStatus(200);
