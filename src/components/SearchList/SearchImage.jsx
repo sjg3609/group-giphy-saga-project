@@ -16,24 +16,21 @@ function SearchImage({ gif }) {
     }
 
     const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode ===  '#423E3D',
+        backgroundColor: theme.palette.mode === '#423E3D',
         ...theme.typography.body2,
         padding: theme.spacing(3),
         margin: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-      }));
+    }));
 
     return (
         <>
-        <Box sx={{ width: '100%' }}>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
-                    <Item>
-                        <img onClick={toggleFavorite} src={gif.images.fixed_height.url} />
-                    </Item> 
+            <Grid item md={4} >
+                <Item>
+                    <img onClick={toggleFavorite} src={gif.images.fixed_height.url} />
+                </Item>
             </Grid>
-        </Box>
-            
         </>
     );
 }
