@@ -45,9 +45,20 @@ function* fetchFavorites() {
 function* postFav(action) {
     try {
         console.log(action.payload);
-        const favoriteObject = { url: action.payload}
+        const favoriteObject = { url: action.payload }
         const favorite = yield axios.post('/api/favorite', favoriteObject);
-        yield put({ type: 'FETCH_GIF_FAVORITES' })
+        yield put({ type: 'FETCH_GIF_FAVORITES' });
+    } catch (error) {
+        console.log(error);
+        alert('Something went wrong.');
+    }
+}
+
+function* changeCategory(action) {
+    try {
+        const categoryObject = { category: action.payload.category };
+        yield axios.put(`/api/favorite/${action.payload.id}`, categoryObject);
+        yield put({ type: 'FETCH_GIF_FAVORITES' });
     } catch (error) {
         console.log(error);
         alert('Something went wrong.');
@@ -58,6 +69,7 @@ function* rootSaga() {
     yield takeEvery('SET_GIF_FAVORITE', postFav);
     yield takeEvery('SET_GIF_SEARCH', fetchGif);
     yield takeEvery('FETCH_GIF_FAVORITES', fetchFavorites);
+    yield takeEvery('PUT_NEW_CATEGORY', changeCategory);
 }
 
 const sagaMiddleware = createSagaMiddleware();

@@ -29,14 +29,15 @@ router.post('/', (req, res) => {
 });
 
 // update given favorite with a category id
-router.put('/:favId', (req, res) => {
+router.put('/:id', (req, res) => {
   // req.body should contain a category_id to add to this favorite image
   const favoriteGif = req.body
   const categoryId = req.params.id;
   console.log(req.body);
-  const queryText = `UPDATE favorites SET category_id = $1 WHERE id=${categoryId}`
-  const queryValues = favoriteGif.category_id;
-  pool.query(queryText, queryValues).then(() => {
+  console.log(req.params.id);
+  const queryText = `UPDATE favorites SET category_id = $1 WHERE id = ${categoryId}`
+  const queryValues = favoriteGif.category;
+  pool.query(queryText, [queryValues]).then(() => {
     res.sendStatus(200);
   }).catch((error) => {
     console.log(`Error in completing Update in favorites query: ${error}`);
