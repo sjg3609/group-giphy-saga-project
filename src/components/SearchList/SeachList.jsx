@@ -1,14 +1,14 @@
 import SearchImage from "./SearchImage";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Grid, Container } from '@mui/material';
+import { Grid, Container, Box } from '@mui/material';
 
 function SearchList() {
     const gifList = useSelector(store => store.searchList);
 
     return (
         <div>
-            <Container fixed >
+            <Box >
                 {
                     gifList.map((gif, i) => (
                         <SearchImage key={i}
@@ -16,7 +16,7 @@ function SearchList() {
                         />
                     ))
                 }
-            </Container>
+            </Box>
 
         </div>
     )

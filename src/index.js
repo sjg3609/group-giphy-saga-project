@@ -16,8 +16,8 @@ const searchList = (state = [], action) => {
 }
 
 const favList = (state = [], action) => {
-    if (action.type === 'SET_GIF_FAVORITE') {
-        return [...state, action.payload];
+    if (action.type === 'SET_GIF_FAVORITES') {
+        return action.payload;
     }
     return state;
 }
@@ -32,9 +32,22 @@ function* fetchGif(action) {
     }
 }
 
+function* fetchFavorites() {
+    try {
+        const favorites = yield axios.get('/api/favorite');
+        yield put({ type: 'SET_GIF_FAVORITES', payload: favorites.data});
+    } catch (error) {
+        console.log(`Error in fetchFavorites ${error}`);
+        alert('Something went wrong.');
+    }
+}
+
 function* postFav(action) {
     try {
-        const favorite = yield axios.post('/api/favorite', action.payload);
+        console.log(action.payload);
+        const favoriteObject = { url: action.payload}
+        const favorite = yield axios.post('/api/favorite', favoriteObject);
+        yield put({ type: 'FETCH_GIF_FAVORITES' })
     } catch (error) {
         console.log(error);
         alert('Something went wrong.');
@@ -44,6 +57,7 @@ function* postFav(action) {
 function* rootSaga() {
     yield takeEvery('SET_GIF_FAVORITE', postFav);
     yield takeEvery('SET_GIF_SEARCH', fetchGif);
+    yield takeEvery('FETCH_GIF_FAVORITES', fetchFavorites);
 }
 
 const sagaMiddleware = createSagaMiddleware();
