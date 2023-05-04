@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Grid, Container, Button } from '@mui/material';
 import FavoriteItem from './FavoriteItem';
 
 function FavoriteList() {
@@ -16,20 +17,26 @@ function FavoriteList() {
         history.goBack('/');
     }
 
-    return(
+    return (
         <div>
             <h3>Favorite Gifs:</h3>
-            <button onClick={goBack}>Go Back</button>
+
             <br />
             <br />
-            {
-                favorites.map((favorite) => (
-                    <FavoriteItem 
-                    key = { favorite.id }
-                    favorite = { favorite }
-                    />
-                ))
-            }
+            <Container fixed>
+                <Grid container spacing={1}>
+                    {
+                        favorites.map((favorite) => (
+                            <FavoriteItem
+                                key={favorite.id}
+                                favorite={favorite}
+                            />
+                        ))
+                    }
+                </Grid>
+            </Container>
+
+            <Button variant="contained" onClick={goBack}>Go Back</Button>
         </div>
     );
 }

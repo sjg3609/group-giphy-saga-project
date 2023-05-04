@@ -1,7 +1,7 @@
 import SearchImage from "./SearchImage";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Grid, Container, Box } from '@mui/material';
+import { Grid, Container, } from '@mui/material';
 
 function SearchList() {
     const gifList = useSelector(store => store.searchList);
