@@ -31,8 +31,9 @@ router.post('/', (req, res) => {
 router.put('/:favId', (req, res) => {
   // req.body should contain a category_id to add to this favorite image
   const favoriteGif = req.body
+  const categoryId = req.params.id;
   console.log(req.body);
-  const queryText = `UPDATE favorites SET category_id = $1`
+  const queryText = `UPDATE favorites SET category_id = $1 WHERE id=${req.params.id}`
   const queryValues = favoriteGif.category_id;
   pool.query(queryText, queryValues).then(() => {
     res.sendStatus(200);
