@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import { Box, TextField, Button } from '@mui/material';
+
 
 function SearchBar() {
     const dispatch = useDispatch();
@@ -29,8 +29,12 @@ function SearchBar() {
 
     return (
         <>
-            <input type="text" placeholder="Search Gifs" value={searchGif} onChange={handleChange}/>
-            <button onClick={search}>Search</button>
+        <Box sx={{ maxWidth: '90%' }}>
+            <TextField  fullWidth margin="normal" variant="standard" type="text" placeholder="Search Gifs" value={searchGif} onChange={handleChange}/>
+            <Button variant="contained" onClick={search}>Search</Button>
+        </Box>
+            
+            
         </>
     )
 }

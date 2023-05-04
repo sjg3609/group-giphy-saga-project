@@ -6,4 +6,4 @@ function FavoriteList() {
     );
 }
 
-export default FavoriteList();
+export default FavoriteList;
